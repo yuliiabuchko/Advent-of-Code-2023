@@ -1,12 +1,26 @@
+from typing import Callable, Any
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+def solve_day_01(path: str) -> tuple[int, int]:
+    from day01.parser import parser
+    from day01.part1 import part1
+    from day01.part2 import part2
+
+    lines = parser(path)
+    return part1(lines), part2(lines)
 
 
-# Press the green button in the gutter to run the script.
+def format_input_path(day: int) -> str:
+    return f"input/day{day:02d}/input.txt"
+
+
+def show_result(day: int, solver: Callable[[str], tuple[Any, Any]]) -> None:
+    print(f"DAY {day}")
+    part1, part2 = solver(format_input_path(day))
+    print(f"Part 1: {part1}")
+    print(f"Part 2: {part2}")
+    print()
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    show_result(1, solve_day_01)

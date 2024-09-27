@@ -1,6 +1,7 @@
 import unittest
 
-from day01.part1 import part1, parser
+from day01.parser import parser
+from day01.part1 import part1
 from day01.part2 import part2
 
 
@@ -18,9 +19,6 @@ class TestDay01(unittest.TestCase):
         test_file = "input/day01/part2.txt"
         input_lines = parser(test_file)
         self.assertEqual(part2(input_lines), 281)
-
-
-
 
 
 if __name__ == '__main__':

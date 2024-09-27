@@ -1,7 +1,5 @@
 from typing import Optional
 
-from day01.part1 import parser
-
 DIGITS = {
     "one": 1,
     "two": 2,
@@ -44,8 +42,3 @@ def part2(lines: list[str]) -> int:
     for line in lines:
         result += solve_for_line(line)
     return result
-
-
-if __name__ == '__main__':
-    input = parser("../input/day01/input.txt")
-    print(part2(input))
