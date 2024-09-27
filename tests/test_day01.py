@@ -7,9 +7,6 @@ from day01.part2 import part2
 
 class TestDay01(unittest.TestCase):
 
-    def setUp(self) -> None:
-        pass
-
     def test_part_1(self):
         test_file = "input/day01/part1.txt"
         input_lines = parser(test_file)
