@@ -19,7 +19,3 @@ class TestDay01(unittest.TestCase):
         test_file = "input/day01/part2.txt"
         input_lines = parser(test_file)
         self.assertEqual(part2(input_lines), 281)
-
-
-if __name__ == '__main__':
-    unittest.main()
