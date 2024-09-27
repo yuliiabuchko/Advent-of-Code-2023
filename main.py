@@ -20,11 +20,11 @@ def solve_day_02(path: str) -> tuple[int, int]:
 
 
 def format_input_path(day: int) -> str:
-    return f"input/day{day:02d}/input.txt"
+    return f"input/day{format(day, '02d')}/input.txt"
 
 
 def show_result(day: int, solver: Callable[[str], tuple[Any, Any]]) -> None:
-    print(f"DAY {day}")
+    print(f"DAY {format(day, '02d')}")
     part1, part2 = solver(format_input_path(day))
     print(f"Part 1: {part1}")
     print(f"Part 2: {part2}")
