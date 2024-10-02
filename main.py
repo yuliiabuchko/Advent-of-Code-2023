@@ -1,46 +1,28 @@
-from typing import Callable, Any
-
-
-def solve_day_01(path: str) -> tuple[int, int]:
-    from day01.parser import parser
-    from day01.part1 import part1
-    from day01.part2 import part2
-
-    lines = parser(path)
-    return part1(lines), part2(lines)
-
-
-def solve_day_02(path: str) -> tuple[int, int]:
-    from day02.parser import parser
-    from day02.part1 import part1
-    from day02.part2 import part2
-
-    games = parser(path)
-    return part1(games), part2(games)
-
-
-def solve_day_03(path: str) -> tuple[int, int]:
-    from day03.parser import parser
-    from day03.part1 import part1
-    from day03.part2 import part2
-
-    engine = parser(path)
-    return part1(engine), part2(engine)
+import importlib
 
 
 def format_input_path(day: int) -> str:
     return f"input/day{format(day, '02d')}/input.txt"
 
 
-def show_result(day: int, solver: Callable[[str], tuple[Any, Any]]) -> None:
+def solve(day: int) -> tuple[int, int]:
+    path = format_input_path(day)
+    parser = importlib.import_module(f'day{format(day, "02d")}.parser')
+    part1 = importlib.import_module(f'day{format(day, "02d")}.part1')
+    part2 = importlib.import_module(f'day{format(day, "02d")}.part2')
+    parsed_input = parser.parser(path)
+    return part1.part1(parsed_input), part2.part2(parsed_input)
+
+
+def show_result(day: int) -> None:
     print(f"DAY {format(day, '02d')}")
-    part1, part2 = solver(format_input_path(day))
+    part1, part2 = solve(day)
     print(f"Part 1: {part1}")
     print(f"Part 2: {part2}")
     print()
 
 
+DAYS = 4
 if __name__ == '__main__':
-    show_result(1, solve_day_01)
-    show_result(2, solve_day_02)
-    show_result(3, solve_day_03)
+    for i in range(DAYS):
+        show_result(i + 1)
