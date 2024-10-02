@@ -1,3 +1,6 @@
+DOT = '.'
+
+
 def part1(engine: list[list[str]]) -> int:
     total = 0
 
@@ -27,10 +30,10 @@ def part1(engine: list[list[str]]) -> int:
 
 
 def is_surrounded_by_symbol(engine: list[list[str]], i: int, j_start: int, j_end: int) -> bool:
-    if engine[i][j_start - 1] != '.' or engine[i][j_end] != '.':
+    if engine[i][j_start - 1] != DOT or engine[i][j_end] != DOT:
         return True
     for x in range(j_start - 1, j_end + 1):
-        if engine[i - 1][x] != '.' or engine[i + 1][x] != '.':
+        if engine[i - 1][x] != DOT or engine[i + 1][x] != DOT:
             return True
     return False
 
@@ -38,8 +41,8 @@ def is_surrounded_by_symbol(engine: list[list[str]], i: int, j_start: int, j_end
 def add_dots_to_input(engine: list[list[str]]) -> list[list[str]]:
     res = []
     columns_num = len(engine[0])
-    res.append(['.' for _ in range(columns_num)])
+    res.append([DOT for _ in range(columns_num)])
     for line in engine:
-        res.append(['.'] + line + ['.'])
-    res.append(['.' for _ in range(columns_num)])
+        res.append([DOT] + line + [DOT])
+    res.append([DOT for _ in range(columns_num)])
     return res
