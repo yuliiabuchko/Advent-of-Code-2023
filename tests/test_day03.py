@@ -1,0 +1,17 @@
+import unittest
+
+from day03.parser import parser
+from day03.part1 import part1
+from day03.part2 import part2
+
+
+class TestDay03(unittest.TestCase):
+    def setUp(self) -> None:
+        test_file = "input/day03/input.txt"
+        self.engine = parser(test_file)
+
+    def test_part_1(self):
+        self.assertEqual(part1(self.engine), 4361)
+
+    def test_part_2(self):
+        self.assertEqual(part2(self.engine), 467835)

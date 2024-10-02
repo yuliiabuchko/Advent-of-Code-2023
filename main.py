@@ -19,6 +19,15 @@ def solve_day_02(path: str) -> tuple[int, int]:
     return part1(games), part2(games)
 
 
+def solve_day_03(path: str) -> tuple[int, int]:
+    from day03.parser import parser
+    from day03.part1 import part1
+    from day03.part2 import part2
+
+    engine = parser(path)
+    return part1(engine), part2(engine)
+
+
 def format_input_path(day: int) -> str:
     return f"input/day{format(day, '02d')}/input.txt"
 
@@ -34,3 +43,4 @@ def show_result(day: int, solver: Callable[[str], tuple[Any, Any]]) -> None:
 if __name__ == '__main__':
     show_result(1, solve_day_01)
     show_result(2, solve_day_02)
+    show_result(3, solve_day_03)
