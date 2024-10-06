@@ -11,7 +11,7 @@ class TestDay04(unittest.TestCase):
         self.cards = parser(test_file)
 
     def test_part_1(self) -> None:
-        self.assertEqual(part1(self.cards), 13)
+        self.assertEqual(13, part1(self.cards))
 
     def test_part_2(self) -> None:
-        self.assertEqual(part2(self.cards), 30)
+        self.assertEqual(30, part2(self.cards))

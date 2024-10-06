@@ -11,7 +11,7 @@ class TestDay05(unittest.TestCase):
         self.almanac = parser(test_file)
 
     def test_part_1(self) -> None:
-        self.assertEqual(part1(self.almanac), 35)
+        self.assertEqual(35, part1(self.almanac))
 
     def test_part_2(self) -> None:
-        self.assertEqual(part2(self.almanac), 46)
+        self.assertEqual(46, part2(self.almanac))

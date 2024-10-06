@@ -11,7 +11,7 @@ class TestDay03(unittest.TestCase):
         self.engine = parser(test_file)
 
     def test_part_1(self) -> None:
-        self.assertEqual(part1(self.engine), 4361)
+        self.assertEqual(4361, part1(self.engine))
 
     def test_part_2(self) -> None:
-        self.assertEqual(part2(self.engine), 467835)
+        self.assertEqual(467835, part2(self.engine))
