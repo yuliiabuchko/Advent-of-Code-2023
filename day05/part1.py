@@ -14,8 +14,8 @@ def process_seed(seed: int, almanac: Almanac) -> int:
 
 def process_map(number: int, game_map: GameMap) -> int:
     for entry in game_map.entries:
-        if entry.source_start <= number < entry.source_end:
-            return entry.destination_start + number - entry.source_start
+        if entry.contains_number(number):
+            return entry.calculate_destination_for_number(number)
     return number
 
 

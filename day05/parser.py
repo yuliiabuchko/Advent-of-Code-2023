@@ -1,10 +1,19 @@
+class GameRange:
+    def __init__(self, start: int, end: int):
+        self.start = start
+        self.end = end
+
+
 class GameEntry:
     def __init__(self, destination_start: int, source_start: int, range_length: int) -> None:
-        self.source_start = source_start
-        self.source_end = source_start + range_length
+        self.source_range = GameRange(source_start, source_start + range_length)
+        self.destination_range = GameRange(destination_start, destination_start + range_length)
 
-        self.destination_start = destination_start
-        self.range_length = range_length
+    def calculate_destination_for_number(self, number: int) -> int:
+        return self.destination_range.start + number - self.source_range.start
+
+    def contains_number(self, number: int) -> bool:
+        return self.source_range.start <= number < self.source_range.end
 
 
 class GameMap:
