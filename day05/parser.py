@@ -45,6 +45,7 @@ def parser(input_path: str) -> Almanac:
         curr_map = None
         for line in input_file.readlines():
             if line.strip() == '':
+                assert curr_map is not None
                 almanac.add_map(curr_map)
                 curr_map = None
             elif line[0].isalpha():
@@ -52,6 +53,8 @@ def parser(input_path: str) -> Almanac:
                 curr_map = GameMap(_from, _to)
             else:
                 destination_start, source_start, range_length = line.strip().split()
+                assert curr_map is not None
                 curr_map.add_entries(int(destination_start), int(source_start), int(range_length))
+        assert curr_map is not None
         almanac.add_map(curr_map)
     return almanac

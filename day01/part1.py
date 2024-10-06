@@ -10,6 +10,8 @@ def solve_for_line(line: str) -> int:
                 second_num = digit
             else:
                 second_num = digit
+    assert first_num is not None
+    assert second_num is not None
     return first_num * 10 + second_num
 
 

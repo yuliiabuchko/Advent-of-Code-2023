@@ -12,7 +12,7 @@ def part2(engine: list[list[str]]) -> int:
     engine = add_dots_to_input(engine)
     i = 1
 
-    gears = {}
+    gears: dict[tuple[int, int], list[str]] = {}
 
     while i <= n:
         j = 1
@@ -24,6 +24,7 @@ def part2(engine: list[list[str]]) -> int:
                 if start is None:
                     start = j
             elif curr_num:
+                assert start is not None
                 gear = surrounded_gear(engine, i, start, j)
                 if gear is not None:
                     if gear not in gears:

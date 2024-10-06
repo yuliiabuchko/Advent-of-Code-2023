@@ -20,6 +20,7 @@ def part1(engine: list[list[str]]) -> int:
                 if start is None:
                     start = j
             elif curr_num:
+                assert start is not None
                 if is_surrounded_by_symbol(engine, i, start, j):
                     total += int(curr_num)
                 curr_num = ''

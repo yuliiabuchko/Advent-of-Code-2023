@@ -17,6 +17,7 @@ def get_digit(line: str) -> Optional[int]:
     for digit, value in DIGITS.items():
         if line.startswith(digit):
             return value
+    return None
 
 
 def solve_for_line(line: str) -> int:
@@ -24,6 +25,7 @@ def solve_for_line(line: str) -> int:
     second_num = None
 
     for i in range(len(line)):
+        digit: Optional[int]
         if line[i].isnumeric():
             digit = int(line[i])
         else:
@@ -34,6 +36,8 @@ def solve_for_line(line: str) -> int:
                 second_num = digit
             else:
                 second_num = digit
+    assert first_num is not None
+    assert second_num is not None
     return first_num * 10 + second_num
 
 

@@ -23,6 +23,7 @@ def find_destination(source: str, almanac: Almanac) -> GameMap:
     for game_map in almanac.maps:
         if game_map.source == source:
             return game_map
+    raise ValueError
 
 
 def part1(almanac: Almanac) -> int:

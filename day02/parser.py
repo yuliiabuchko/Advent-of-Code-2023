@@ -1,25 +1,25 @@
 class GameEntry:
-    def __init__(self):
+    def __init__(self) -> None:
         self.red = 0
         self.green = 0
         self.blue = 0
 
-    def set_red(self, red: int):
+    def set_red(self, red: int) -> None:
         self.red = red
 
-    def set_green(self, green: int):
+    def set_green(self, green: int) -> None:
         self.green = green
 
-    def set_blue(self, blue: int):
+    def set_blue(self, blue: int) -> None:
         self.blue = blue
 
 
 class Game:
-    def __init__(self, num: int):
+    def __init__(self, num: int) -> None:
         self.id = num
-        self.entries = []
+        self.entries: list[GameEntry] = []
 
-    def add_entry(self, entry: GameEntry):
+    def add_entry(self, entry: GameEntry) -> None:
         self.entries.append(entry)
 
 
