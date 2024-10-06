@@ -10,8 +10,8 @@ class TestDay05(unittest.TestCase):
         test_file = "input/day05/input.txt"
         self.almanac = parser(test_file)
 
-    def test_part_1(self):
+    def test_part_1(self) -> None:
         self.assertEqual(part1(self.almanac), 35)
 
-    def test_part_2(self):
+    def test_part_2(self) -> None:
         self.assertEqual(part2(self.almanac), 46)

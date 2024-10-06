@@ -10,8 +10,8 @@ class TestDay03(unittest.TestCase):
         test_file = "input/day03/input.txt"
         self.engine = parser(test_file)
 
-    def test_part_1(self):
+    def test_part_1(self) -> None:
         self.assertEqual(part1(self.engine), 4361)
 
-    def test_part_2(self):
+    def test_part_2(self) -> None:
         self.assertEqual(part2(self.engine), 467835)
