@@ -1,4 +1,9 @@
+"""Module provides solution for part 2"""
+
+
 from typing import Optional
+
+from day01.part1 import updated_values
 
 DIGITS = {
     "one": 1,
@@ -14,6 +19,7 @@ DIGITS = {
 
 
 def get_digit(line: str) -> Optional[int]:
+    """Return integer digit if line starts with string representation"""
     for digit, value in DIGITS.items():
         if line.startswith(digit):
             return value
@@ -21,28 +27,23 @@ def get_digit(line: str) -> Optional[int]:
 
 
 def solve_for_line(line: str) -> int:
+    """Process single input line"""
     first_num = None
-    second_num = None
+    last_num = None
 
-    for i in range(len(line)):
+    for i, char in enumerate(line):
         digit: Optional[int]
-        if line[i].isnumeric():
-            digit = int(line[i])
+        if char.isnumeric():
+            digit = int(char)
         else:
             digit = get_digit(line[i:])
         if digit is not None:
-            if first_num is None:
-                first_num = digit
-                second_num = digit
-            else:
-                second_num = digit
+            first_num, last_num = updated_values(digit, first_num)
     assert first_num is not None
-    assert second_num is not None
-    return first_num * 10 + second_num
+    assert last_num is not None
+    return first_num * 10 + last_num
 
 
 def part2(lines: list[str]) -> int:
-    result = 0
-    for line in lines:
-        result += solve_for_line(line)
-    return result
+    """Solve part 2"""
+    return sum(solve_for_line(line) for line in lines)

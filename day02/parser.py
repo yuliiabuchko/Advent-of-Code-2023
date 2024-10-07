@@ -1,37 +1,44 @@
+"""Module parses and processes input"""
+import dataclasses
+
+
 class GameEntry:
+    """Single game set entry"""
     def __init__(self) -> None:
         self.red = 0
         self.green = 0
         self.blue = 0
 
     def set_red(self, red: int) -> None:
+        """Set red balls count"""
         self.red = red
 
     def set_green(self, green: int) -> None:
+        """Set green balls count"""
         self.green = green
 
     def set_blue(self, blue: int) -> None:
+        """Set blue balls count"""
         self.blue = blue
 
 
+@dataclasses.dataclass
 class Game:
-    def __init__(self, num: int) -> None:
-        self.id = num
-        self.entries: list[GameEntry] = []
-
-    def add_entry(self, entry: GameEntry) -> None:
-        self.entries.append(entry)
+    """Game with entries sets"""
+    id: int
+    entries: list[GameEntry]
 
 
 def parser(path: str) -> list[Game]:
+    """Function reads and parses input"""
     res = []
-    with open(path, 'r') as file:
+    with open(path, 'r', encoding='utf-8') as file:
         for line in file.readlines():
             line = line[len("Game "):]
             game_num_str, game_entries_str = line.split(":")
-            game = Game(int(game_num_str))
-            entries = game_entries_str.split(";")
-            for entry_str in entries:
+            entries_str = game_entries_str.split(";")
+            entries = []
+            for entry_str in entries_str:
                 entry = GameEntry()
                 by_colors = entry_str.split(",")
                 for by_color in by_colors:
@@ -44,6 +51,6 @@ def parser(path: str) -> list[Game]:
                             entry.set_red(int(num_str))
                         case "blue":
                             entry.set_blue(int(num_str))
-                game.add_entry(entry)
-            res.append(game)
+                entries.append(entry)
+            res.append(Game(int(game_num_str), entries))
     return res

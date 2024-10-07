@@ -1,13 +1,19 @@
+"""Module parses and processes input"""
+import dataclasses
+
+
+@dataclasses.dataclass
 class Card:
-    def __init__(self, num: int, winning_numbers: list[int], possessed_numbers: list[int]):
-        self.id = num
-        self.winning_numbers = winning_numbers
-        self.possessed_numbers = possessed_numbers
+    """Input card"""
+    id: int
+    winning_numbers: list[int]
+    possessed_numbers: list[int]
 
 
 def parser(path: str) -> list[Card]:
+    """Function reads and parses input"""
     res = []
-    with open(path, 'r') as file:
+    with open(path, 'r', encoding='utf-8') as file:
         for line in file.readlines():
             card_with_num, numbers = line.strip().split(":")
             winning, possessed = numbers.split("|")

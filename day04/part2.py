@@ -1,13 +1,14 @@
+"""Module provides solution for part 2"""
+
 from day04.parser import Card
+from day04.part1 import calculate_card_wins
 
 
 def part2(cards: list[Card]) -> int:
+    """Solve part 2"""
     card_copies = {}
     for card in cards:
-        card_wins = 0
-        for possessed in card.possessed_numbers:
-            if possessed in card.winning_numbers:
-                card_wins += 1
+        card_wins = calculate_card_wins(card)
         if card.id not in card_copies:
             card_copies[card.id] = 0
         card_copies[card.id] += 1

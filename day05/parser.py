@@ -1,60 +1,66 @@
+"""Module parses and processes input"""
+import dataclasses
+
+
+@dataclasses.dataclass
 class GameRange:
-    def __init__(self, start: int, end: int):
-        self.start = start
-        self.end = end
+    """Range from start (including) to end (not including)"""
+    start: int
+    end: int
 
 
 class GameEntry:
+    """Single game entry with source and destination ranges"""
+
     def __init__(self, destination_start: int, source_start: int, range_length: int) -> None:
         self.source = GameRange(source_start, source_start + range_length)
         self.destination = GameRange(destination_start, destination_start + range_length)
 
     def calculate_destination_for_number(self, number: int) -> int:
+        """Calculate destination for number"""
         return self.destination.start + number - self.source.start
 
     def contains_number(self, number: int) -> bool:
+        """Check if number is within source range"""
         return self.source.start <= number < self.source.end
 
 
+@dataclasses.dataclass
 class GameMap:
-    def __init__(self, source: str, destination: str) -> None:
-        self.source = source
-        self.destination = destination
-        self.entries: list[GameEntry] = []
-
-    def add_entries(self, destination_start: int, source_start: int, range_length: int) -> None:
-        self.entries.append(GameEntry(destination_start, source_start, range_length))
+    """Map from source to destination with entries"""
+    source: str
+    destination: str
+    entries: list[GameEntry]
 
 
+@dataclasses.dataclass
 class Almanac:
-    def __init__(self, seeds: list[int]):
-        self.seeds = seeds
-        self.maps: list[GameMap] = []
-
-    def add_map(self, game_map: GameMap) -> None:
-        self.maps.append(game_map)
+    """Input almanac"""
+    seeds: list[int]
+    maps: list[GameMap]
 
 
 def parser(input_path: str) -> Almanac:
-    with open(input_path, 'r') as input_file:
+    """Function reads and parses input"""
+    with open(input_path, 'r', encoding='utf-8') as input_file:
         seeds_str = input_file.readline()
         seeds = list(map(int, seeds_str.split(":")[1].split()))
-        almanac = Almanac(seeds)
+        almanac = Almanac(seeds, [])
         input_file.readline()
 
         curr_map = None
         for line in input_file.readlines():
             if line.strip() == '':
                 assert curr_map is not None
-                almanac.add_map(curr_map)
+                almanac.maps.append(curr_map)
                 curr_map = None
             elif line[0].isalpha():
                 _from, _, _to = line.split()[0].split('-')
-                curr_map = GameMap(_from, _to)
+                curr_map = GameMap(_from, _to, [])
             else:
-                destination_start, source_start, range_length = line.strip().split()
+                destination_start, source_start, range_length = map(int, line.strip().split())
                 assert curr_map is not None
-                curr_map.add_entries(int(destination_start), int(source_start), int(range_length))
+                curr_map.entries.append(GameEntry(destination_start, source_start, range_length))
         assert curr_map is not None
-        almanac.add_map(curr_map)
+        almanac.maps.append(curr_map)
     return almanac

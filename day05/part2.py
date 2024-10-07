@@ -1,8 +1,10 @@
+"""Module provides solution for part 2"""
 from day05.parser import Almanac, GameRange, GameMap
 from day05.part1 import find_destination
 
 
 def process_game_map(ranges: list[GameRange], game_map: GameMap) -> list[GameRange]:
+    """Calculate possible destination ranges for map"""
     res = []
     for _range in ranges:
         range_covered = []
@@ -34,6 +36,7 @@ def process_game_map(ranges: list[GameRange], game_map: GameMap) -> list[GameRan
 
 
 def get_uncovered(_range: GameRange, range_covered: list[GameRange]) -> list[GameRange]:
+    """Return all uncovered ranges"""
     if not range_covered:
         return [_range]
     res = []
@@ -50,6 +53,7 @@ def get_uncovered(_range: GameRange, range_covered: list[GameRange]) -> list[Gam
 
 
 def process_seed_range(seed_ranges: list[GameRange], almanac: Almanac) -> list[GameRange]:
+    """Process seed ranges into almanac maps"""
     source = "seed"
     ranges_starts = seed_ranges
     while True:
@@ -61,10 +65,12 @@ def process_seed_range(seed_ranges: list[GameRange], almanac: Almanac) -> list[G
 
 
 def part2(almanac: Almanac) -> int:
+    """Solve part 2"""
     input_seeds_ranges = []
     i = 0
     while i < len(almanac.seeds):
-        input_seeds_ranges.append(GameRange(almanac.seeds[i], almanac.seeds[i] + almanac.seeds[i + 1]))
+        input_seeds_ranges.append(GameRange(almanac.seeds[i],
+                                            almanac.seeds[i] + almanac.seeds[i + 1]))
         i += 2
 
     processed_ranges = process_seed_range(input_seeds_ranges, almanac)

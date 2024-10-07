@@ -1,11 +1,17 @@
+"""Module parses and processes input"""
+import dataclasses
+
+
+@dataclasses.dataclass
 class Game:
-    def __init__(self, time: int, record_distance: int):
-        self.time = time
-        self.record_distance = record_distance
+    """Input game"""
+    time: int
+    record_distance: int
 
 
 def parser(input_path: str) -> list[Game]:
-    with open(input_path, 'r') as input_file:
+    """Function reads and parses input"""
+    with open(input_path, 'r', encoding='utf-8') as input_file:
         times = list(map(int, input_file.readline().split(":")[1].split()))
         distances = list(map(int, input_file.readline().split(":")[1].split()))
         return [Game(t, d) for t, d in zip(times, distances)]
