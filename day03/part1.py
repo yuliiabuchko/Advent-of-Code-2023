@@ -1,7 +1,11 @@
+"""Module provides solution for part 1"""
+
+
 DOT = '.'
 
 
 def part1(engine: list[list[str]]) -> int:
+    """Solve part 1"""
     total = 0
 
     n = len(engine)
@@ -31,6 +35,7 @@ def part1(engine: list[list[str]]) -> int:
 
 
 def is_surrounded_by_symbol(engine: list[list[str]], i: int, j_start: int, j_end: int) -> bool:
+    """Check if number is surrounded by any symbol"""
     if engine[i][j_start - 1] != DOT or engine[i][j_end] != DOT:
         return True
     for x in range(j_start - 1, j_end + 1):
@@ -40,6 +45,7 @@ def is_surrounded_by_symbol(engine: list[list[str]], i: int, j_start: int, j_end
 
 
 def add_dots_to_input(engine: list[list[str]]) -> list[list[str]]:
+    """Add dots around the input grid"""
     res = []
     columns_num = len(engine[0])
     res.append([DOT for _ in range(columns_num)])

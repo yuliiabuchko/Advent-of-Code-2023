@@ -1,3 +1,5 @@
+"""Module provides solution for part 2"""
+
 from typing import Optional
 
 from day03.part1 import add_dots_to_input
@@ -6,6 +8,7 @@ GEAR = '*'
 
 
 def part2(engine: list[list[str]]) -> int:
+    """Solve part 2"""
     n = len(engine)
     m = len(engine[0])
 
@@ -42,7 +45,9 @@ def part2(engine: list[list[str]]) -> int:
     return total
 
 
-def surrounded_gear(engine: list[list[str]], i: int, j_start: int, j_end: int) -> Optional[tuple[int, int]]:
+def surrounded_gear(engine: list[list[str]], i: int, j_start: int, j_end: int)\
+        -> Optional[tuple[int, int]]:
+    """Check if number is surrounded by gear, if so - return its coordinates"""
     if engine[i][j_start - 1] == GEAR:
         return i, j_start - 1
     if engine[i][j_end] == GEAR:
