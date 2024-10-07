@@ -44,13 +44,12 @@ def parser(path: str) -> list[Game]:
                 for by_color in by_colors:
                     by_color = by_color.strip()
                     num_str, color = by_color.split()
-                    match color:
-                        case "green":
-                            entry.set_green(int(num_str))
-                        case "red":
-                            entry.set_red(int(num_str))
-                        case "blue":
-                            entry.set_blue(int(num_str))
+                    if color == "green":
+                        entry.set_green(int(num_str))
+                    elif color == "red":
+                        entry.set_red(int(num_str))
+                    elif color == "blue":
+                        entry.set_blue(int(num_str))
                 entries.append(entry)
             res.append(Game(int(game_num_str), entries))
     return res
