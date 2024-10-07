@@ -1,3 +1,7 @@
+"""Module parses and processes input"""
+
+
 def parser(input_path: str) -> list[str]:
-    with open(input_path, 'r') as input_file:
+    """Function reads and parses input"""
+    with open(input_path, 'r', encoding='utf-8') as input_file:
         return input_file.readlines()
