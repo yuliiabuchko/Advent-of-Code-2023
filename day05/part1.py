@@ -1,7 +1,9 @@
+"""Module provides solution for part 1"""
 from day05.parser import Almanac, GameMap
 
 
 def process_seed(seed: int, almanac: Almanac) -> int:
+    """Process seed into almanac maps"""
     source = "seed"
     curr_number = seed
     while True:
@@ -13,6 +15,7 @@ def process_seed(seed: int, almanac: Almanac) -> int:
 
 
 def process_map(number: int, game_map: GameMap) -> int:
+    """Calculate destination for number for game map"""
     for entry in game_map.entries:
         if entry.contains_number(number):
             return entry.calculate_destination_for_number(number)
@@ -20,6 +23,7 @@ def process_map(number: int, game_map: GameMap) -> int:
 
 
 def find_destination(source: str, almanac: Almanac) -> GameMap:
+    """Find next map in almanac"""
     for game_map in almanac.maps:
         if game_map.source == source:
             return game_map
@@ -27,4 +31,5 @@ def find_destination(source: str, almanac: Almanac) -> GameMap:
 
 
 def part1(almanac: Almanac) -> int:
+    """Solve part 1"""
     return min(process_seed(seed, almanac) for seed in almanac.seeds)
