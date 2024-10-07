@@ -20,7 +20,7 @@ def show_result(day: int) -> None:
     print()
 
 
-DAYS = 5
+DAYS = 6
 if __name__ == '__main__':
     for i in range(DAYS):
         show_result(i + 1)
