@@ -40,7 +40,6 @@ class Almanac:
     maps: list[GameMap]
 
 
-
 def parser(input_path: str) -> Almanac:
     """Function reads and parses input"""
     with open(input_path, 'r', encoding='utf-8') as input_file:
