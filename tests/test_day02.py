@@ -1,15 +1,20 @@
 """Module to test solution"""
+import os
 import unittest
+from pathlib import Path
 
 from day02.parser import parser
 from day02.part1 import part1
 from day02.part2 import part2
 
+THIS_DIR = Path(__file__).parent
+
 
 class TestDay02(unittest.TestCase):
     """Test day 02 solution"""
+
     def setUp(self) -> None:
-        test_file = "input/day02/input.txt"
+        test_file = os.path.join(THIS_DIR, "input/day02/input.txt")
         self.input_lines = parser(test_file)
 
     def test_part_1(self) -> None:
