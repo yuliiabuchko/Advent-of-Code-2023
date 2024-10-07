@@ -1,2 +1,6 @@
+"""Module provides solution for part 2"""
+
+
 def part2(input_lines: list[str]) -> int:
-    pass
+    """Solve part 2"""
+    print(input_lines)
